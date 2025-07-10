@@ -2,6 +2,17 @@
   "name": "kolme-client",
   "version": "1.0.0",
   "main": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    },
+    "./HttpApi": {
+      "import": "./src/HttpApi.js"
+    },
+    "./crypto": {
+      "import": "./src/crypto.js"
+    }
+  },
   "scripts": {},
   "author": "",
   "license": "ISC",
