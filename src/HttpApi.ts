@@ -2,6 +2,7 @@ import * as t from 'io-ts';
 import { isRight } from 'fp-ts/Either';
 import { PathReporter } from 'io-ts/lib/PathReporter';
 import waitFor from './waitFor';
+import * as websocket from './websocket';
 
 const processResponse = async <T>(response: Response, decoder: t.Decoder<unknown, T>) : Promise<t.Validation<T>> => {
   if(!response.ok) {
@@ -154,6 +155,20 @@ export const waitForTx = async(base: string, txHash: string) : Promise<Block> =>
   const after = Date.now()
 
   throw new Error(`Kolme block with tx ${txHash} did not appear on the side chain after ${(after - before) / 1000} seconds`)
+}
+
+export type SubscribeToNotificationsInputs = {
+  onOpen: () => void
+  onMessage: (message: MessageEvent) => void
+  onClose: () => void
+  onError: () => void
+}
+
+export const subscribeToNotifications = (base: string, inputs: SubscribeToNotificationsInputs) => {
+  return websocket.open({
+    ...inputs,
+    endpoint: `${base}/notifications`,
+  })  
 }
 
 export class WithBase {
