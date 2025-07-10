@@ -14,7 +14,3 @@ export const open = ({ endpoint, onOpen, onClose, onMessage } : OpenProps) : Web
 
   return ws
 }
-
-export const shouldReconnect = (ws: WebSocket): boolean => {
-  return ws.readyState !== ws.CONNECTING && ws.readyState !== ws.OPEN
-}

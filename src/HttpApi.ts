@@ -171,10 +171,6 @@ export const subscribeToNotifications = (base: string, inputs: SubscribeToNotifi
   })  
 }
 
-export type WebSocketState = 
-  | { type: 'subscribed', socket: WebSocket }
-  | { type: 'unsubscribed' }
-
 export class WithBase {
   base: string;
   
