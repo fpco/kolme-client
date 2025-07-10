@@ -88,3 +88,16 @@ setTimeout(
   60 * 1000
 );
 ```
+
+## Talking to the http API directly
+
+You can always talk to the HTTP API directly if you want to.
+
+```TypeScript
+import { getNextNonce } from 'kolme-client/HttpApi'
+
+const publicKey = 'YOUR_PUBLIC_KEY';
+const apiBase = "https://yourkolme.app"
+
+const nextNonce = await getNextNonce(apiBase, publicKey);
+```
